@@ -6,21 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/environment.cpp
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/environment.cpp
 sensors/lidar.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/sensors/lidar.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/sensors/lidar.h
 render/render.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/render.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/render.h
 processPointClouds.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/processPointClouds.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/processPointClouds.h
 processPointClouds.cpp
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/processPointClouds.cpp
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/processPointClouds.cpp
 
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/processPointClouds.cpp
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/processPointClouds.cpp
 processPointClouds.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/processPointClouds.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/processPointClouds.h
 
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/processPointClouds.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/processPointClouds.h
 pcl/io/pcd_io.h
 -
 pcl/common/common.h
@@ -50,23 +50,23 @@ ctime
 chrono
 -
 render/box.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/box.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/box.h
 unordered_set
 -
 
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/box.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/box.h
 Eigen/Geometry
 -
 
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/render.cpp
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/render.cpp
 render.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/render.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/render.h
 
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/render.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/render.h
 pcl/visualization/pcl_visualizer.h
 -
 box.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/box.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/box.h
 iostream
 -
 vector
@@ -74,9 +74,9 @@ vector
 string
 -
 
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/sensors/lidar.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/sensors/lidar.h
 ../render/render.h
-/home/brian/workspaces/SFND_Lidar_Obstacle_Detection/src/render/render.h
+/home/brian/workspaces/Sensor Fusion ND/SFND_Lidar_Obstacle_Detection/src/render/render.h
 ctime
 -
 chrono
