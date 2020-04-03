@@ -66,36 +66,36 @@ void detKeypointsModern(vector<cv::KeyPoint> &keypoints, cv::Mat &img, std::stri
 {
     double t;
     if (detectorType.compare("SHITOMASI") == 0)
-        {
-            t = detKeypointsShiTomasi(keypoints, img);
-        }
-        else if (detectorType.compare("FAST") == 0)
-        {
-            t = detKeypointsFast(keypoints, img);
-        }
-        else if (detectorType.compare("BRISK") == 0)
-        {
-            t = detKeypointsBrisk(keypoints, img);
-        }  
-        else if (detectorType.compare("ORB") == 0)
-        {
-            t = detKeypointsOrb(keypoints, img);
-        }  
-        else if (detectorType.compare("AKAZE") == 0)
-        {
-            t = detKeypointsAkaze(keypoints, img);
-        }  
-        else if (detectorType.compare("SIFT") == 0)
-        {
-            t = detKeypointsSift(keypoints, img);
-        }           
-        else//HARRIS or misstype
-        {
-            detectorType = "HARRIS";
-            t = detKeypointsHarris(keypoints, img);
-        }
+    {
+        t = detKeypointsShiTomasi(keypoints, img);
+    }
+    else if (detectorType.compare("FAST") == 0)
+    {
+        t = detKeypointsFast(keypoints, img);
+    }
+    else if (detectorType.compare("BRISK") == 0)
+    {
+        t = detKeypointsBrisk(keypoints, img);
+    }  
+    else if (detectorType.compare("ORB") == 0)
+    {
+        t = detKeypointsOrb(keypoints, img);
+    }  
+    else if (detectorType.compare("AKAZE") == 0)
+    {
+        t = detKeypointsAkaze(keypoints, img);
+    }  
+    else if (detectorType.compare("SIFT") == 0)
+    {
+        t = detKeypointsSift(keypoints, img);
+    }           
+    else//HARRIS or misstype
+    {
+        detectorType = "HARRIS";
+        t = detKeypointsHarris(keypoints, img);
+    }
 
-        cout << detectorType << " detection with n=" << keypoints.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << endl;
+    cout << detectorType << " detection with n=" << keypoints.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << endl;
 
     // visualize results
     if (bVis)
@@ -254,4 +254,19 @@ double detKeypointsSift(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img)
   detector->detect(img,keypoints);
   t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
   return t;
+}
+
+void focusOnVehicle(vector<cv::KeyPoint>& keypoints, cv::Rect vehicleRect)
+{
+  vector<cv::KeyPoint>::iterator it = keypoints.begin();
+      while(it != keypoints.end())
+      {
+        if(!vehicleRect.contains((*it).pt))
+        {
+          it = keypoints.erase(it);
+        }else
+        {
+          it++;
+        }
+      }
 }

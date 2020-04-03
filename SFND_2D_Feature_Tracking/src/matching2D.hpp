@@ -18,6 +18,7 @@
 
 #include "dataStructures.h"
 
+void focusOnVehicle(vector<cv::KeyPoint>& keypoints, cv::Rect vehicleRect)
 double detKeypointsSift(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img);
 double detKeypointsAkaze(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img);
 double detKeypointsOrb(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img);
