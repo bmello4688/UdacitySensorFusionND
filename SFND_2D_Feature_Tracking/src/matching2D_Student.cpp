@@ -38,7 +38,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
         std::vector< std::vector<cv::DMatch> > knn_matches;
         matcher->knnMatch( descSource, descRef, knn_matches, 2 );
         
-        //-- Filter matches using the Lowe's ratio test
+        //-- Filter matches using the Lowe's distance ratio test
         const float ratio_thresh = 0.7f;
         for (size_t i = 0; i < knn_matches.size(); i++)
         {
