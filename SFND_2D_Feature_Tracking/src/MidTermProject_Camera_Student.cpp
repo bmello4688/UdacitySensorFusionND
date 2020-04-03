@@ -44,6 +44,7 @@ int main(int argc, const char *argv[])
 
     /* MAIN LOOP OVER ALL IMAGES */
 
+    int keypointSizeCount = 0;
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex++)
     {
         /* LOAD IMAGE INTO BUFFER */
@@ -79,7 +80,7 @@ int main(int argc, const char *argv[])
         //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
         //// -> SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
         detKeypointsModern(keypoints, imgGray, detectorType, false);
-        
+        keypointSizeCount += keypoints.size();
         //// EOF STUDENT ASSIGNMENT
 
         //// STUDENT ASSIGNMENT
@@ -175,6 +176,8 @@ int main(int argc, const char *argv[])
         }
 
     } // eof loop over all images
+
+    cout << "Keypoint total " << keypointSizeCount << endl;
 
     return 0;
 }

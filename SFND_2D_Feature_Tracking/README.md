@@ -283,15 +283,18 @@ else if (selectorType.compare("SEL_KNN") == 0)
 Count the number of keypoints on the preceding vehicle for all 10 images and take note of the distribution of their neighborhood size. Do this for all the detectors you have implemented.</font>
 
 
-| Detector        | # of Key Points   | 
-|:-------------:|:-------------:| 
-| SHITOMASI     | 1370        | 
-| HARRIS      | 115      |
-| SIFT     | 1438      |
-| BRISK      | 2757       |
-| FAST      | 1824       |
-| ORG      | 500      |
-| AKAZE      | 1351      |
+#### Number of Key-points for 10 Images
+
+| Detectors | Number of Key-points |
+| :-------: | :------------------: |
+| SHITOMASI |        13423         |
+|  HARRIS   |         1737         |
+|   FAST    |        17874         |
+|   BRISK   |        27116         |
+|    ORB    |         5000         |
+|   AKAZE   |        13429         |
+|   SIFT    |        13862         |
+
 
 ### Neighborhood Size
 
@@ -342,64 +345,54 @@ Count the number of matched keypoints for all 10 images using all possible combi
     </font>
     
     
-   |  Mached Kpts  |SIFT       | ORB      | FREAK    |    BRISK  | BRIEF    |     AKAZE |
-   |:-------:|:---------:|:--------:|:--------:|:---------:|:--------:|:---------:|  
-   |SHITOMASI| 927       | 908      | 768      | 767       | 944      |  NA   |
-   |HARRIS| 163       | 162      | 144      | 142       | 177      |  NA   |
-   |SIFT| 800       | NA      | 593      | 899       | 1111      |  NA   |
-   |FAST| 1046       | 1071      | 878      | 767       | 944      |  NA   |
-   |ORB| 763       | 763      | 420      | 751       | 551      |  NA   |
-   |BRISK| 1646       | 1514      | 1524      | 1570       | 1688      |  NA   |
-   |AKAZE| 1270       | 1182      | 1187      | 1215       | 1281      |  1259   |
+
+#### Number of Matched Key-points for 10 Images
+
+| Detectors\Descriptors | BRISK |  BRIEF  |      ORB      | FREAK | AKAZE | SIFT |
+| :-------------------: | :---: | :-----: | :-----------: | :---: | :---: | :--: |
+|       SHITOMASI       |  347  | **413** |      398      |  341  |  N/A  | 405  |
+|        HARRIS         |  141  |   206   |      162      |  144  |  N/A  | 163  |
+|         FAST          |  281  |   336   |      332      |  295  |  N/A  | 291  |
+|         BRISK         |  276  |   314   |      266      |  292  |  N/A  | 279  |
+|          ORB          |  339  |   267   |      347      |  327  |  N/A  | 364  |
+|         AKAZE         |  349  |   392   |      345      |  353  |  343  | 348  |
+|         SIFT          |  201  |   249   | Out of Memory |  195  |  N/A  | 294  |
 
 ## MP.9 Performance
 
 <font size="3">
 Log the time it takes for keypoint detection and descriptor extraction. The results must be entered into a spreadsheet and based on this data, the TOP3 detector / descriptor combinations must be recommended as the best choice for our purpose of detecting keypoints on vehicles.</font>
     
-   | Detector|	Descritpor |	Detect Time	| Descript Time	| Time per KPts|
-|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|     
-|	AKAZE	|	AKAZE	|	272.086	|	228.941	|	0.400822
-|	AKAZE	|	BRIEF	|	273.191	|	8.10696	|	0.222722
-|	AKAZE	|	BRISK	|	279.144	|	11.5211	|	0.231421
-|	AKAZE	|	FREAK	|	273.496	|	283.314	|	0.444737
-|	AKAZE	|	ORB	|	273.295	|	16.1199	|	0.239582
-|	AKAZE	|	SIFT	|	273.093	|	100.46	|	0.292524
-|	BRISK	|	BRIEF	|	232.688	|	11.4562	|	0.155506
-|	BRISK	|	BRISK	|	232.892	|	18.6075	|	0.157187
-|	BRISK	|	FREAK	|	233.081	|	279.919	|	0.343374
-|	BRISK	|	ORB	|	231.174	|	25.873	|	0.162483
-|	BRISK	|	SIFT	|	233.151	|	134.333	|	0.239248
-|	FAST	|	BRIEF	|	5.28216	|	7.36139	|	<font color=red>0.0124078</font>
-|	FAST	|	BRISK	|	5.47513	|	10.4666	|	<font color=red>0.0168517</font>
-|	FAST	|	FREAK	|	5.32958	|	276.929	|	0.305806
-|	FAST	|	ORB	|	5.16305	|	5.46263	|	<font color=red>0.0105101</font>
-|	FAST	|	SIFT	|	5.18968	|	80.3707	|	0.084296
-|	HARRIS	|	BRIEF	|	77.2746	|	2.4412	|	0.498224
-|	HARRIS	|	BRISK	|	81.9919	|	3.30181	|	0.584204
-|	HARRIS	|	FREAK	|	78.1611	|	273.532	|	2.31377
-|	HARRIS	|	ORB	|	78.4784	|	4.20341	|	0.520011
-|	HARRIS	|	SIFT	|	78.6818	|	67.456	|	0.907688
-|	ORB	|	BRIEF	|	42.2434	|	5.69279	|	0.0849932
-|	ORB	|	BRISK	|	43.3097	|	8.78351	|	0.0726545
-|	ORB	|	FREAK	|	41.9896	|	278.602	|	0.776251
-|	ORB	|	ORB	|	42.3593	|	25.1892	|	0.0878395
-|	ORB	|	SIFT	|	42.7236	|	150.535	|	0.269162
-|	SHITOMASI	|	BRIEF	|	64.517	|	5.84294	|	0.077489
-|	SHITOMASI	|	BRISK	|	70.0578	|	8.83414	|	0.0959756
-|	SHITOMASI	|	FREAK	|	67.8751	|	277.396	|	0.417498
-|	SHITOMASI	|	ORB	|	74.2831	|	5.02183	|	0.0881166
-|	SHITOMASI	|	SIFT	|	81.1219	|	76.0981	|	0.171825
-|	SIFT	|	BRIEF	|	413.827	|	6.89	|	0.55798
-|	SIFT	|	BRISK	|	415.306	|	9.86147	|	0.605651
-|	SIFT	|	FREAK	|	413.213	|	278.819	|	1.01322
-|	SIFT	|	SIFT	|	420.63	|	363.605	|	0.94259
+#### Key-point Detection and Descriptor Extraction Time Consumption (in ms)
+
+| Detectors\Descriptors |  BRISK  |    BRIEF    |      ORB      |  FREAK  |  AKAZE  |    SIFT    |
+| :-------------------: | :-----: | :---------: | :-----------: | :-----: | :-----: | :--------: |
+|       SHITOMASI       | 98.8398 |   82.6777   |    91.0227    | 328.525 |   N/A   |  180.6775  |
+|        HARRIS         | 106.512 |   96.1124   |    108.656    | 338.423 |   N/A   |  151.436   |
+|         FAST          | 12.7961 | **9.92533** |    12.1023    | 267.232 |   N/A   |  116.5025  |
+|         BRISK         | 262.799 |   257.95    |    262.838    | 510.137 |   N/A   | 337.020527 |
+|          ORB          | 53.0014 |   52.4011   |    58.3677    | 294.063 |   N/A   |  270.4355  |
+|         AKAZE         | 387.531 |   383.136   |    378.456    | 584.215 | 753.823 |  458.371   |
+|         SIFT          | 607.335 |   623.61    | Out of Memory | 805.025 |   N/A   |  1072.55   |
 
 
-the TOP3 detector / descriptor combinations:
 
-* 1) **FAST** and **ORB**
+#### Efficiency (matches/ms)
 
-* 2) **FAST** and **BRIEF**
+| Detectors\Descriptors |  BRISK   |    BRIEF    |      ORB      |  FREAK   |  AKAZE   |   SIFT   |
+| :-------------------: | :------: | :---------: | :-----------: | :------: | :------: | :------: |
+|       SHITOMASI       | 3.51073  |   4.9953    |    4.37254    | 1.03797  |   N/A    | 2.24156  |
+|        HARRIS         |  1.3238  |   2.14332   |    1.49094    | 0.425504 |   N/A    | 1.07636  |
+|         FAST          | 21.9598  | **33.8528** |    27.4329    | 1.10391  |   N/A    | 2.49780  |
+|         BRISK         | 1.05023  |   1.21729   |    1.01203    | 0.572395 |   N/A    | 0.827842 |
+|          ORB          | 6.39606  |   5.09532   |    5.94507    | 1.11201  |   N/A    | 1.34597  |
+|         AKAZE         | 0.900572 |   1.02314   |   0.911598    | 0.60423  | 0.455014 | 0.759210 |
+|         SIFT          | 0.330954 |  0.399288   | Out of Memory | 0.242228 |   N/A    | 0.274113 |
 
-* 3) **FAST** and **BRISK**
+
+
+## TOP3 detector / descriptor combinations
+
+1. FAST + BRIEF
+2. FAST + ORB
+3. FAST + BRISK
