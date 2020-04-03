@@ -37,7 +37,7 @@ int main(int argc, const char *argv[])
     int imgFillWidth = 4;  // no. of digits which make up the file index (e.g. img-0001.png)
 
     // misc
-    int dataBufferSize = 3;       // no. of images which are held in memory (ring buffer) at the same time
+    int dataBufferSize = 2;       // no. of images which are held in memory (ring buffer) at the same time
     typedef boost::circular_buffer<DataFrame> circular_buffer; // list of data frames which are held in memory at the same time
     circular_buffer dataBuffer(dataBufferSize); 
     bool bVis = false;            // visualize results
@@ -73,11 +73,11 @@ int main(int argc, const char *argv[])
 
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
-        string detectorType = "SHITOMASI";
+        string detectorType = "BRISK";
 
         //// STUDENT ASSIGNMENT
         //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
-        //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
+        //// -> SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
         detKeypointsModern(keypoints, imgGray, detectorType, false);
         
         //// EOF STUDENT ASSIGNMENT

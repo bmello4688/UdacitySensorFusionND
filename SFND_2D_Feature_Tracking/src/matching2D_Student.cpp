@@ -26,6 +26,8 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
         matcher = cv::DescriptorMatcher::create(cv::DescriptorMatcher::FLANNBASED);
     }
 
+      // perform feature description
+    double t = (double)cv::getTickCount();
     // perform matching task
     if (selectorType.compare("SEL_NN") == 0)
     { // nearest neighbor (best match)
@@ -39,7 +41,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
         matcher->knnMatch( descSource, descRef, knn_matches, 2 );
         
         //-- Filter matches using the Lowe's distance ratio test
-        const float ratio_thresh = 0.7f;
+        const float ratio_thresh = 0.8f;
         for (size_t i = 0; i < knn_matches.size(); i++)
         {
             if (knn_matches[i][0].distance < ratio_thresh * knn_matches[i][1].distance)
@@ -48,6 +50,9 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
             }
         }
     }
+
+    t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    cout << "using matching Type "<< matcherType << " and selection type " << selectorType << " with n=" << matches.size() << " keypoints in match keypoint descriptions in " << 1000 * t / 1.0 << " ms" << endl;
 }
 
 // Use one of several types of state-of-art descriptors to uniquely identify keypoints
