@@ -33,6 +33,8 @@ opencv2/xfeatures2d.hpp
 -
 opencv2/xfeatures2d/nonfree.hpp
 -
+boost/circular_buffer.hpp
+-
 dataStructures.h
 /home/brian/workspaces/Sensor Fusion ND/SFND_2D_Feature_Tracking/src/dataStructures.h
 matching2D.hpp
