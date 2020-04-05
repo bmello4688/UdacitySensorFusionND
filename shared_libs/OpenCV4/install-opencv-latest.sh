@@ -11,7 +11,7 @@ rm -rf opencv_contrib/build
 [ ! -d "installation/OpenCV-$cvVersion" ] && mkdir installation/OpenCV-"$cvVersion"
 
 # Save current working directory
-cwd=pwd
+cwd=$(echo pwd)
 
 sudo apt -y update
 sudo apt -y upgrade
@@ -34,8 +34,10 @@ sudo apt -y install libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-d
 sudo apt -y install libxine2-dev libv4l-dev
 cd /usr/include/linux
 sudo ln -s -f ../libv4l1-videodev.h videodev.h
-cd "$cwd"
 
+cd $cwd
+$cwd
+exit
 sudo apt -y install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 sudo apt -y install libgtk2.0-dev libtbb-dev qt5-default
 sudo apt -y install libatlas-base-dev
@@ -55,8 +57,9 @@ sudo apt -y install python3-dev python3-pip
 sudo -H pip3 install -U pip numpy
 sudo apt -y install python3-testresources
 
-
+$cwd
 cd $cwd
+exit
 ############ For Python 3 ############
 # create virtual environment
 source /home/brian/anaconda3/bin/activate
@@ -70,7 +73,7 @@ source "$cwd"/OpenCV-"$cvVersion"-py3/bin/activate
 pip install wheel numpy scipy matplotlib scikit-image scikit-learn ipython dlib
  
 # quit virtual environment
-deactivate
+conda deactivate
 
 
 git clone https://github.com/opencv/opencv.git
@@ -89,7 +92,7 @@ mkdir build
 cd build
 
 
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
+sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
             -D CMAKE_INSTALL_PREFIX=$cwd/OpenCV-$cvVersion \
             -D INSTALL_C_EXAMPLES=ON \
             -D INSTALL_PYTHON_EXAMPLES=ON \
