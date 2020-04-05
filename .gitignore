@@ -1,1 +1,3 @@
 */build/*
+*/shared_libs/*
+!*.sh

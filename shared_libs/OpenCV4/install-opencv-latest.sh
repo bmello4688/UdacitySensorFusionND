@@ -11,7 +11,7 @@ rm -rf opencv_contrib/build
 [ ! -d "installation/OpenCV-$cvVersion" ] && mkdir installation/OpenCV-"$cvVersion"
 
 # Save current working directory
-cwd=$(echo pwd)
+cwd="$(pwd)"
 
 sudo apt -y update
 sudo apt -y upgrade
@@ -35,9 +35,8 @@ sudo apt -y install libxine2-dev libv4l-dev
 cd /usr/include/linux
 sudo ln -s -f ../libv4l1-videodev.h videodev.h
 
-cd $cwd
-$cwd
-exit
+cd "$cwd"
+
 sudo apt -y install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 sudo apt -y install libgtk2.0-dev libtbb-dev qt5-default
 sudo apt -y install libatlas-base-dev
@@ -57,9 +56,8 @@ sudo apt -y install python3-dev python3-pip
 sudo -H pip3 install -U pip numpy
 sudo apt -y install python3-testresources
 
-$cwd
-cd $cwd
-exit
+cd "$cwd"
+
 ############ For Python 3 ############
 # create virtual environment
 source /home/brian/anaconda3/bin/activate
@@ -93,12 +91,12 @@ cd build
 
 
 sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
-            -D CMAKE_INSTALL_PREFIX=$cwd/OpenCV-$cvVersion \
+            -D CMAKE_INSTALL_PREFIX="$cwd"/OpenCV-$cvVersion \
             -D INSTALL_C_EXAMPLES=ON \
             -D INSTALL_PYTHON_EXAMPLES=ON \
             -D WITH_TBB=ON \
             -D WITH_V4L=ON \
-            -D OPENCV_PYTHON3_INSTALL_PATH=$cwd/OpenCV-$cvVersion-py3/lib/python3.5/site-packages \
+            -D OPENCV_PYTHON3_INSTALL_PATH="$cwd"/OpenCV-$cvVersion-py3/lib/python3.5/site-packages \
         -D WITH_QT=ON \
         -D WITH_OPENGL=ON \
         -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
