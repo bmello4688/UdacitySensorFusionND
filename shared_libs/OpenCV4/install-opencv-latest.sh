@@ -3,8 +3,8 @@ echo "OpenCV installation by learnOpenCV.com"
 cvVersion="4.1.2"
 
 # Clean build directories
-rm -rf opencv/build
-rm -rf opencv_contrib/build
+sudo rm -rf opencv/build
+sudo rm -rf opencv_contrib/build
 
 # Create directory for installation
 [ ! -d "installation" ] && mkdir installation
