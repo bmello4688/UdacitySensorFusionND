@@ -1,6 +1,6 @@
 echo "OpenCV installation by learnOpenCV.com"
 # Define OpenCV Version to install 
-cvVersion="master"
+cvVersion="4.1.2"
 
 # Clean build directories
 rm -rf opencv/build
@@ -90,7 +90,7 @@ cd build
 
 
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-            -D CMAKE_INSTALL_PREFIX=/usr/local/ \
+            -D CMAKE_INSTALL_PREFIX=$cwd/OpenCV-$cvVersion \
             -D INSTALL_C_EXAMPLES=ON \
             -D INSTALL_PYTHON_EXAMPLES=ON \
             -D WITH_TBB=ON \
