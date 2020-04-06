@@ -72,7 +72,7 @@ int main(int argc, const char *argv[])
     // misc
     double sensorFrameRate = 10.0 / imgStepWidth; // frames per second for Lidar and camera
     int dataBufferSize = 2;       // no. of images which are held in memory (ring buffer) at the same time
-    boost::circular_buffer<DataFrame> dataBuffer(dataBufferSize); // list of data frames which are held in memory at the same time
+    vector<DataFrame> dataBuffer; // list of data frames which are held in memory at the same time
     bool bVis = false;            // visualize results
 
     /* MAIN LOOP OVER ALL IMAGES */
@@ -85,6 +85,8 @@ int main(int argc, const char *argv[])
         ostringstream imgNumber;
         imgNumber << setfill('0') << setw(imgFillWidth) << imgStartIndex + imgIndex;
         string imgFullFilename = imgBasePath + imgPrefix + imgNumber.str() + imgFileType;
+
+        cout << "Image: " << imgFullFilename << endl;
 
         // load image from file 
         cv::Mat img = cv::imread(imgFullFilename);
@@ -138,10 +140,6 @@ int main(int argc, const char *argv[])
         bVis = false;
 
         cout << "#4 : CLUSTER LIDAR POINT CLOUD done" << endl;
-        
-        
-        // REMOVE THIS LINE BEFORE PROCEEDING WITH THE FINAL PROJECT
-        continue; // skips directly to the next image without processing what comes beneath
 
         /* DETECT IMAGE KEYPOINTS */
 
@@ -264,7 +262,7 @@ int main(int argc, const char *argv[])
                     //// TASK FP.3 -> assign enclosed keypoint matches to bounding box (implement -> clusterKptMatchesWithROI)
                     //// TASK FP.4 -> compute time-to-collision based on camera (implement -> computeTTCCamera)
                     double ttcCamera;
-                    clusterKptMatchesWithROI(*currBB, (dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->kptMatches);                    
+                    clusterKptMatchesWithROI(*currBB, *prevBB,(dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->kptMatches);                    
                     computeTTCCamera((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints, currBB->kptMatches, sensorFrameRate, ttcCamera);
                     //// EOF STUDENT ASSIGNMENT
 
