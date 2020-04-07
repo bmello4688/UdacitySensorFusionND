@@ -197,7 +197,7 @@ double getMedianPointX(std::vector<LidarPoint> &lidarPoints)
         return a.x < b.x;  // Sort ascending on the x coordinate only
     });
 
-    return lidarPoints[lidarPoints.size()/2].x
+    return lidarPoints[lidarPoints.size()/2].x;
 }
 
 
