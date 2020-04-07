@@ -190,12 +190,14 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
 
 
 // Helper function to sort lidar points based on their X (longitudinal) coordinate
-void sortLidarPointsX(std::vector<LidarPoint> &lidarPoints)
+double getMedianPointX(std::vector<LidarPoint> &lidarPoints)
 {
     // This std::sort with a lambda mutates lidarPoints, a vector of LidarPoint
     std::sort(lidarPoints.begin(), lidarPoints.end(), [](LidarPoint a, LidarPoint b) {
         return a.x < b.x;  // Sort ascending on the x coordinate only
     });
+
+    return lidarPoints[lidarPoints.size()/2].x
 }
 
 
@@ -205,10 +207,9 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
 {
     // In each frame, take the median x-distance as our more robust estimate.
     // If performance is suffering, consider taking the median of a random subset of the points.
-    sortLidarPointsX(lidarPointsPrev);
-    sortLidarPointsX(lidarPointsCurr);
-    double d0 = lidarPointsPrev[lidarPointsPrev.size()/2].x;
-    double d1 = lidarPointsCurr[lidarPointsCurr.size()/2].x;
+    
+    double d0 = getMedianPointX(lidarPointsPrev);
+    double d1 = getMedianPointX(lidarPointsCurr);
 
     // Using the constant-velocity model (as opposed to a constant-acceleration model)
     // TTC = d1 * delta_t / (d0 - d1)
