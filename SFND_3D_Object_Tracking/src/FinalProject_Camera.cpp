@@ -30,7 +30,7 @@ int main(int argc, const char *argv[])
     /* INIT VARIABLES AND DATA STRUCTURES */
 
     // data location
-    string dataPath = "./";
+    string dataPath = "../";
 
     // camera
     string imgBasePath = dataPath + "images/";
