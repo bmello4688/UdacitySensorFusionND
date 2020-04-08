@@ -237,12 +237,10 @@ The lidar sensor is way below the camera value. There are alot more lidar points
 
 #### 6. Performance Evaluation 2
 
-All detector / descriptor combinations implemented in previous chapters have been compared with regard to the TTC estimate on a frame-by-frame basis. To facilitate comparison, a spreadsheet and graph should be used to represent the different TTCs. 
+All detector / descriptor combinations implemented in previous chapters have been compared with regard to the TTC estimate on a frame-by-frame basis. To facilitate comparison, a spreadsheet and graph should be used to represent the different TTCs.
+
+Check out dat/results for full spreadsheet of all values. Below is the dector and descriptor with the best results. It has the least difference between the lidar and camera ttc calculation. It also has the least amount of outlier values.
 
 #### TTC time comparison (in ms)
 
-#### SHITOMASI and BRISK
-
-| Frame     |  Lidar     |    Camera   |    Average    |
-| :-------: | :--------: | :---------: | :-----------: |
-| 0         | 12.028624  | 12.028624   |   12.028624   |
+![Best TTC estimation](dat/results/SHITOMASI/ttc_gridSHITOMASIvBRISK.md)
