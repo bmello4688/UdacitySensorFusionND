@@ -79,6 +79,11 @@ int main(int argc, const char *argv[])
     boost::filesystem::path full_path(boost::filesystem::current_path());
     std::cout << "Current path is : " << full_path << std::endl;
 
+    string detectorType = "FAST"; //SHITOMASI, FAST, BRISK, ORB, AKAZE, SIFT
+    string descriptorType = "BRIEF"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
+
+    
+
     /* MAIN LOOP OVER ALL IMAGES */
 
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex+=imgStepWidth)
@@ -153,7 +158,6 @@ int main(int argc, const char *argv[])
 
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
-        string detectorType = "FAST";
 
         detKeypointsModern(keypoints, imgGray, detectorType, false);
 
@@ -180,7 +184,7 @@ int main(int argc, const char *argv[])
         /* EXTRACT KEYPOINT DESCRIPTORS */
 
         cv::Mat descriptors;
-        string descriptorType = "BRIEF"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
+        
         descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
 
         // push descriptors for current frame to end of data buffer
@@ -273,6 +277,10 @@ int main(int argc, const char *argv[])
                         char str[200];
                         sprintf(str, "TTC Lidar : %f s, TTC Camera : %f s", ttcLidar, ttcCamera);
                         putText(visImg, str, cv::Point2f(80, 50), cv::FONT_HERSHEY_PLAIN, 2, cv::Scalar(0,0,255));
+
+                        string imgResultFullFilename =  imgBasePath + "results/ttc_estimation" + imgNumber.str() + imgFileType;
+                        cout << imgResultFullFilename << endl;
+                        cv::imwrite(imgResultFullFilename, visImg);
 
                         string windowName = "Final Results : TTC";
                         cv::namedWindow(windowName, 4);

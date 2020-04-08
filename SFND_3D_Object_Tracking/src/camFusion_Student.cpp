@@ -130,13 +130,25 @@ void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, 
 }
 
 
-// Associate a given bounding box with the keypoints it contains
+// associate a given bounding box with the keypoints it contains
 void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPoint> &kptsCurr, std::vector<cv::DMatch> &kptMatches)
 {
-    // Loop over all matches in the current frame
-    for (cv::DMatch match : kptMatches) {
-        if (boundingBox.roi.contains(kptsCurr[match.trainIdx].pt)) {
-            boundingBox.kptMatches.push_back(match);
+    float average_distance = 0.0f;
+    size_t valid_pt_size = 0;
+    for(cv::DMatch& kptMatch : kptMatches) {
+        if(boundingBox.roi.contains(kptsCurr[kptMatch.trainIdx].pt)){
+            average_distance = average_distance + kptMatch.distance; 
+            valid_pt_size++;
+        }
+    }
+    if(valid_pt_size == 0){
+        return;
+    }
+    average_distance = average_distance / valid_pt_size;
+    for(cv::DMatch& kptMatch : kptMatches) {
+        auto& curr_pt = kptsCurr[kptMatch.trainIdx].pt;
+        if(boundingBox.roi.contains(curr_pt) && kptMatch.distance < average_distance) {
+            boundingBox.kptMatches.push_back(kptMatch);
         }
     }
 }
@@ -222,7 +234,7 @@ double getInterquartileMedianOfX(std::vector<LidarPoint> &lidarPoints)
 
     double Q3 = medianOfX(lidarPoints, q3_index);
 
-    return Q3 - Q1;
+    return (Q3 + Q1) /2;
 }
 
 // Compute time-to-collision (TTC) based on relevant lidar points
