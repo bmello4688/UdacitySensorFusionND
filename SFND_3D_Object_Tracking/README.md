@@ -229,11 +229,11 @@ Several examples (2-3) have been identified and described in detail. The asserti
 
 ![TTC estimation 3 ](images/results/ttc_estimation0003.png)
 
-The lidar sensor is way above the camera value. If the laser did not reflect off of the car appropriately the value could come back higher making the lidar sensor believe the vehicle is farther away.
+The lidar sensor is way above the camera value. If the laser did not reflect off of the car appropriately the value could come back higher making the lidar sensor believe the vehicle is farther away. Another possibility is that the camera value is incorrect due to light/shade issues.
 
 ![TTC estimation 13 ](images/results/ttc_estimation0013.png)
 
-The lidar sensor is way below the camera value. There are alot more lidar points than in the previously used example. Since there are more points maybe their was some erroneous light samples that made it back to the sensor causing the sensor to believe the vehicle is closer than it is.
+The lidar sensor is way below the camera value. There are alot more lidar points than in the previously used example. Since there are more points maybe their was some erroneous light samples that made it back to the sensor causing the sensor to believe the vehicle is closer than it is. Another possibility is that the camera value is incorrect due to light/shade issues.
 
 #### 6. Performance Evaluation 2
 
@@ -241,12 +241,8 @@ All detector / descriptor combinations implemented in previous chapters have bee
 
 #### TTC time comparison (in ms)
 
-| Detectors\Descriptors |  BRISK  |    BRIEF    |      ORB      |  FREAK  |  AKAZE  |    SIFT    |
-| :-------------------: | :-----: | :---------: | :-----------: | :-----: | :-----: | :--------: |
-|       SHITOMASI       | 98.8398 |   82.6777   |    91.0227    | 328.525 |   N/A   |  180.6775  |
-|        HARRIS         | 106.512 |   96.1124   |    108.656    | 338.423 |   N/A   |  151.436   |
-|         FAST          | 12.7961 | **9.92533** |    12.1023    | 267.232 |   N/A   |  116.5025  |
-|         BRISK         | 262.799 |   257.95    |    262.838    | 510.137 |   N/A   | 337.020527 |
-|          ORB          | 53.0014 |   52.4011   |    58.3677    | 294.063 |   N/A   |  270.4355  |
-|         AKAZE         | 387.531 |   383.136   |    378.456    | 584.215 | 753.823 |  458.371   |
-|         SIFT          | 607.335 |   623.61    | Out of Memory | 805.025 |   N/A   |  1072.55   |
+#### SHITOMASI and BRISK
+
+| Frame     |  Lidar     |    Camera   |    Average    |
+| :-------: | :--------: | :---------: | :-----------: |
+| 0         | 12.028624  | 12.028624   |   12.028624   |
