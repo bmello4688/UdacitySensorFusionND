@@ -1,3 +1,0 @@
-/home/brian/workspaces/Sensor Fusion ND/SFND_3D_Object_Tracking/debug/CMakeFiles/rebuild_cache.dir
-/home/brian/workspaces/Sensor Fusion ND/SFND_3D_Object_Tracking/debug/CMakeFiles/3D_object_tracking.dir
-/home/brian/workspaces/Sensor Fusion ND/SFND_3D_Object_Tracking/debug/CMakeFiles/edit_cache.dir

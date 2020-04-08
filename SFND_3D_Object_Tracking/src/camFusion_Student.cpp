@@ -188,18 +188,42 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
     TTC = (-1.0 / frameRate) / (1 - medianDistRatio);
 }
 
+double medianOfX(std::vector<LidarPoint> &lidarPoints, double index)
+{
+    int floorIndex = (int)index;
+    if(floorIndex == index)
+    {
+        //whole
+        return lidarPoints[floorIndex].x;
 
-// Helper function to sort lidar points based on their X (longitudinal) coordinate
-double getMedianPointX(std::vector<LidarPoint> &lidarPoints)
+    }
+    else
+    {
+        return (lidarPoints[floorIndex].x + lidarPoints[floorIndex+1].x)/2;
+    }
+    
+}
+
+double getInterquartileMedianOfX(std::vector<LidarPoint> &lidarPoints)
 {
     // This std::sort with a lambda mutates lidarPoints, a vector of LidarPoint
     std::sort(lidarPoints.begin(), lidarPoints.end(), [](LidarPoint a, LidarPoint b) {
         return a.x < b.x;  // Sort ascending on the x coordinate only
     });
 
-    return lidarPoints[lidarPoints.size()/2].x;
-}
+    int n = lidarPoints.size();
 
+    //first quartile
+    double q1_index = (n+1)/4;
+
+    double Q1 = medianOfX(lidarPoints, q1_index);
+
+    double q3_index = 3*(n+1)/4;
+
+    double Q3 = medianOfX(lidarPoints, q3_index);
+
+    return Q3 - Q1;
+}
 
 // Compute time-to-collision (TTC) based on relevant lidar points
 void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
@@ -208,8 +232,8 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
     // In each frame, take the median x-distance as our more robust estimate.
     // If performance is suffering, consider taking the median of a random subset of the points.
     
-    double d0 = getMedianPointX(lidarPointsPrev);
-    double d1 = getMedianPointX(lidarPointsCurr);
+    double d0 = getInterquartileMedianOfX(lidarPointsPrev);
+    double d1 = getInterquartileMedianOfX(lidarPointsCurr);
 
     // Using the constant-velocity model (as opposed to a constant-acceleration model)
     // TTC = d1 * delta_t / (d0 - d1)
